@@ -1,0 +1,18 @@
+{
+    "require": {
+        "dex/composer-commander": "*"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../../"
+        }
+    ],
+    "extra": {
+        "composer-commander": {
+            "commands": [
+                "Dex\\Composer\\Commander\\Tests\\Fixtures\\SuccessCommand"
+            ]
+        }
+    }
+}
