@@ -33,9 +33,17 @@ class CommanderPlugin implements Capable, CommandProvider, PluginInterface
         $extra = $composer->getPackage()->getExtra();
 
         $commands = $extra['composer-commander']['commands'] ?? [];
+        $file = $extra['composer-commander']['file'] ?? 'commander.json';
 
-        foreach ($commands as $command) {
-            static::$commands[] = $this->instanceCommand($command);
+        $this->loadCommands($commands);
+
+        if (file_exists($file)) {
+            $json = file_get_contents($file);
+            $data = json_decode($json, true);
+
+            $commands = $data['commands'] ?? [];
+
+            $this->loadCommands($commands);
         }
     }
 
