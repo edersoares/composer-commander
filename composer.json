@@ -1,6 +1,6 @@
 {
     "name": "dex/composer-commander",
-    "description": "Composer Commander",
+    "description": "Custom commands for Composer",
     "type": "composer-plugin",
     "license": "MIT",
     "authors": [

@@ -11,7 +11,7 @@ class CommanderPluginTest extends TestCase
 {
     private string $directory = __DIR__ . '/../Fixtures/Plugin';
 
-    public function test()
+    public function testWhenThereAreNoCommands()
     {
         $application = new Application();
         $input = new StringInput('commands');
