@@ -9,14 +9,27 @@ use Symfony\Component\Console\Output\BufferedOutput;
 
 class CommanderPluginTest extends TestCase
 {
+    private string $directory = __DIR__ . '/../Fixtures/Plugin';
+
     public function test()
     {
         $application = new Application();
-        $input = new StringInput("commands");
+        $input = new StringInput('commands');
         $output = new BufferedOutput();
 
         $application->doRun($input, $output);
 
         $this->assertStringContainsString('There are no custom commands', $output->fetch());
+    }
+
+    public function testCommandsInComposerJson()
+    {
+        $application = new Application();
+        $input = new StringInput('success -d ' . $this->directory);
+        $output = new BufferedOutput();
+
+        $application->doRun($input, $output);
+
+        $this->assertStringContainsString('Success', $output->fetch());
     }
 }

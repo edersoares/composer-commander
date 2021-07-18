@@ -20,17 +20,6 @@ class CommanderPlugin implements Capable, CommandProvider, PluginInterface
         ];
     }
 
-    public function instanceCommand(string $command): BaseCommand
-    {
-        $command = new $command;
-
-        if ($command instanceof BaseCommand) {
-            return $command;
-        }
-
-        return new AdapterCommand($command);
-    }
-
     public function getCommands(): array
     {
         return [
@@ -56,5 +45,23 @@ class CommanderPlugin implements Capable, CommandProvider, PluginInterface
 
     public function uninstall(Composer $composer, IOInterface $io)
     {
+    }
+
+    private function instanceCommand(string $command): BaseCommand
+    {
+        $command = new $command;
+
+        if ($command instanceof BaseCommand) {
+            return $command;
+        }
+
+        return new AdapterCommand($command);
+    }
+
+    private function loadCommands(array $commands)
+    {
+        foreach ($commands as $command) {
+            static::$commands[] = $this->instanceCommand($command);
+        }
     }
 }
