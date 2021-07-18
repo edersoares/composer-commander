@@ -1,0 +1,5 @@
+{
+    "commands": [
+        "Dex\\Composer\\Commander\\Tests\\Fixtures\\SuccessCommanderCommand"
+    ]
+}

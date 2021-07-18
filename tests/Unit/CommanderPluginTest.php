@@ -32,4 +32,15 @@ class CommanderPluginTest extends TestCase
 
         $this->assertStringContainsString('Success', $output->fetch());
     }
+
+    public function testCommandsInCommanderJson()
+    {
+        $application = new Application();
+        $input = new StringInput('success:commander -d ' . $this->directory);
+        $output = new BufferedOutput();
+
+        $application->doRun($input, $output);
+
+        $this->assertStringContainsString('Running commands from commander.json', $output->fetch());
+    }
 }
