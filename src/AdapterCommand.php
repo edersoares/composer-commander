@@ -4,7 +4,6 @@ namespace Dex\Composer\Commander;
 
 use Composer\Command\BaseCommand;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -36,13 +35,10 @@ class AdapterCommand extends BaseCommand
         return $this->command->getAliases();
     }
 
-    public function getDefinition(): InputDefinition
+    public function run(InputInterface $input, OutputInterface $output): int
     {
-        return $this->command->getDefinition();
-    }
+        $this->command->ignoreValidationErrors();
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
-    {
-        return $this->command->execute($input, $output);
+        return $this->command->run($input, $output);
     }
 }

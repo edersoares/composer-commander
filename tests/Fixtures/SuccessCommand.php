@@ -2,11 +2,11 @@
 
 namespace Dex\Composer\Commander\Tests\Fixtures;
 
-use Composer\Command\BaseCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SuccessCommand extends BaseCommand
+class SuccessCommand extends Command
 {
     protected function configure()
     {
